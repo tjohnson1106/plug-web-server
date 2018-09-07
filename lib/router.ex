@@ -9,6 +9,12 @@ defmodule PlugEx.Router do
     send_resp(conn, 200, "Hello World!")
   end
 
+  # dynamic
+
+  get "/about/:user_name" do
+    send_resp(conn, 200, "Hello #{user_name}")
+  end
+
   get "/home" do
     conn = put_resp_content_type(conn, "text/html")
     send_file(conn, 200, "lib/index.html")

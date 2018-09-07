@@ -4,12 +4,14 @@ defmodule PlugEx do
   require Logger
 
   def start(_type, _args) do
+    port = Application.get_env(:plug_ex, :cowboy_port, 8000)
+
     children = [
       Plug.Adapters.Cowboy.child_spec(
         :http,
         PlugEx.Router,
         [],
-        port: 8000
+        port: port
       )
     ]
 
